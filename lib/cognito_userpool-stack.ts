@@ -1,4 +1,4 @@
-import { RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib';
+import { CfnOutput, RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { UserPool } from 'aws-cdk-lib/aws-cognito';
 
@@ -11,5 +11,11 @@ export class CognitoUserPoolStack extends Stack {
             removalPolicy: RemovalPolicy.DESTROY,
         });
         this.userPoolId = pool.userPoolId;
+
+        new CfnOutput(this, 'userPoolId', {
+            value: pool.userPoolId,
+            description: 'The ID of the user pool',
+            exportName: 'userPoolId'
+        });
     }
 }
