@@ -11,6 +11,7 @@ export class CognitoUserPoolStack extends Stack {
         const userPoolNameParam = new CfnParameter(this, 'userPoolName', {
             type: 'String',
             description: 'The name of the user pool',
+            default: 'my-user-pool',
         });
 
         const pool = new UserPool(this, 'UserPool', {
